@@ -58,7 +58,8 @@ async function generatePayslipPDF(data) {
     await page.emulateMedia('screen')
     const date = data.Date.replace(/\//g, '')
     await page.pdf({
-        path: `${require('path').join(require('os').homedir(), 'Desktop')}/${date}${data.Name}.pdf`,
+        //path: `${require('path').join(require('os').homedir(), 'Desktop')}/${date}${data.Name}.pdf`,
+        path: `${require('path').join(require('os').homedir())}/${data.Nam}.pdf`,    
         format: 'A4',
         printBackground: true
     })
