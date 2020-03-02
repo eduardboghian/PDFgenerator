@@ -12,7 +12,6 @@ const payslipRoutes = require('./routes/payslipRoutes')
 const app = express()
 
 
-
 // MIDDLEWARE
 
 app.use(express.static(path.resolve('./public')))
@@ -31,7 +30,7 @@ app.use('/api', invoiceRoutes)
 app.use('/api', payslipRoutes)
 
   
-// DB CONNECTION 
+// DB CONNECTION INFO
 
 mongoose.connect(
     process.env.DB_CONNECT,  
