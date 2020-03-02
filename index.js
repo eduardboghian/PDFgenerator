@@ -11,9 +11,7 @@ const payslipRoutes = require('./routes/payslipRoutes')
 
 const app = express()
 
-const osHomedir = require('os-homedir');
 
-console.log(osHomedir());
 
 // MIDDLEWARE
 

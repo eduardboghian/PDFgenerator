@@ -51,14 +51,18 @@ async function generatePayslipPDF(data) {
     )
     const page = await browser.newPage()
 
+    const osHomedir = require('os-homedir');
+
+    console.log(osHomedir());
     console.log(data)
     const content = await compile('payslip', data)
 
     await page.setContent(content)
     await page.emulateMedia('screen')
     const date = data.Date.replace(/\//g, '')
+    
     await page.pdf({
-        path: `${require('path').join(require('os').homedir(), 'Desktop')}/${data.Name}.pdf`,  
+        path: `${require('path').join(osHomedir, 'Desktop')}/${data.Name}.pdf`,  
         format: 'A4',
         printBackground: true
     })
