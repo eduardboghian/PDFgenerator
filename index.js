@@ -38,9 +38,6 @@ mongoose.connect(
 )
 
 
-// let data = []
-
-// generatePayslipPDF(data)
 
 // BUILD THE CLIENT SIDE 
 
