@@ -1,0 +1,176 @@
+<html>
+    <head><link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet"></head>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            height: 100%;
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .wr {
+            position: relative;
+            width: 86%;
+            height: 94%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .title {
+            width: 100%;
+            font-size: 22px;
+            font-weight: 700;
+            border-bottom: 10px solid #F44E00;
+            color: #F44E00;
+        }
+
+        .constructor-details {
+            width: 100%;
+            height: 30%;
+            border: 1px solid #F44E00;
+            margin-top: 50px;
+            padding: 2% 5%;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 10% 40% 40%;
+        }
+        .box-title {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            font-size: 18px;
+            color: #F44E00;
+            font-weight: 700;
+            border: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .constructor-details div {
+            font-size: 13px;
+            
+        }
+        .constructor-details p {
+            font-size: 14px;
+            border: .2px solid #F44E00;
+            font-weight: 700;
+            width: 90%;
+            padding: 3px 0 0 6px;
+            margin: 10px 0 0;
+        }
+        .name p { height: 40px; }
+        .adress p { height: 90px }
+        .week-ending p, .tax-reference p { height: 23px;}
+
+        .subcontractor-details {
+            height: 46%;
+            margin-top: 50px;
+            width: 100%;
+            border: 1px solid #F44E00;
+            padding: 2% 5%;
+        }
+        .footer{
+            text-align: center;
+            width: 100%;
+            padding-top: 50px;
+        }
+
+        .left .name {
+            margin-top: 40px;
+        }
+
+        .right { float: right; }
+        .left { float: left; }
+        .right, .left {
+            width: 40%;
+            height: 90%;
+            font-size: 13px;
+        }
+
+        .right p, .left p {
+            font-size: 14px !important;
+            font-weight: 700;
+            margin: 10px 0 20px;
+            height: 30px;
+        }
+
+        .left p {
+            border: 1px solid #F44E00;
+            padding: 2% 5%;
+        }
+
+        .right p {
+            border: 1px solid #F44E00;
+            padding: 2% 5%;
+            color: #F44E00;
+        }
+
+        .right span {
+            color: #000;
+            font-size: 14px;
+            float: right;
+        }
+    </style>
+    
+    <body>
+        <div class="wr">
+            <div class="title">Construction Industry Scheme<br /> Payment and deduction statement</div>
+            <div class="constructor-details">
+                <p class="box-title">Contractor Details</p>
+                <div class="name">Contractor's name
+                    <p>JFW Build LTD</p>
+                </div>
+                <div class="week-ending">Payment and deduction made in tax week ended
+                    <p>{{Date}}</p>   
+                </div>
+                <div class="adress">Contractor s address
+                    <p>130 Old Street<br />
+                    London<br />
+                    3C1V 9BD</p>
+                </div>
+                <div class="tax-reference">Employer s Tax Reference
+                    <p>120 / PC01857429</p>
+                </div>
+            </div>
+
+            <div class="subcontractor-details">
+                <p class="box-title">Subcontractor details</p>
+                <div class="left">
+                    <div class="name">Subcontractor s full name
+                        <p>{{Name}}</p>
+                    </div>
+                    <div class="utr">Unique Taxpayer reference (UTR)
+                        <p>{{URT}}</p>
+                    </div>
+                    <div class="ver-no">Verification Number*
+                        <p></p>
+                    </div>
+                    <div class="subsol">* Verification number only to be entered where a deduction at the higher rate has been made.</div>
+                </div>
+
+                <div class="right">
+                    <div class="name">Gross amount paid (Excl VAT) (A)
+                        <p>£ <span>{{Amount}}</span></p>
+                    </div>
+                    <div class="name">Less cost of materials
+                        <p>£</p>
+                    </div>
+                    <div class="name"> Amount liable to deduction
+                        <p>£</p>
+                    </div>
+                    <div class="name">Amount deducted (B)
+                        <p>£</p>
+                    </div>
+                    <div class="name">Amount payable (A-B)
+                        <p>£</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="footer">Subcontractor - Please keep this document safe</div>
+        </div>
+    </body>
+</html>

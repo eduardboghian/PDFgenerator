@@ -1,0 +1,11 @@
+{
+    "env": {
+      "node": true,
+      "browser": true,
+      "es6": true
+    },
+    "globals": {
+      "exampleGlobalVariable": true
+    },
+    "extends": ["airbnb", "prettier", "prettier/react"]
+  }

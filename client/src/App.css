@@ -1,0 +1,66 @@
+button {
+    position: relative;
+    width: 150px;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    margin: 20px auto;
+    background-color: rgb(16, 16, 224);
+    font-size: 22px;
+    color: #fff;
+}
+
+li { 
+    list-style: none;
+}
+
+.App {
+    width: 100%;
+    height: 100%;
+}
+
+.wr {
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-80%, -50%);
+    height: auto;
+}
+
+.form-control {
+    font-size: 18px;
+}
+
+.form-control::-webkit-file-upload-button {
+    padding: 8px;
+    border: none;
+    border-radius: 90px;
+    background-color: #484848;
+    font-size: 16px;
+    color: #fff;
+}
+
+
+.submit-file {
+    background-color: #484848;
+    width: 150px;
+    height: 45px;
+    margin: 10px auto 0;
+    font-size: 18px;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.submit-file:focus, .pay-btn:focus {
+    background-color: darkred;
+}
+
+.chose-file {
+    width: 150px;
+    height: 45;
+    margin: 10 auto;
+    padding: 10px;
+}
