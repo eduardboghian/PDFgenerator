@@ -37,25 +37,29 @@ async function generatePDF(data) {
 }
 
 async function generatePayslipPDF(data) {
-    const browser = await puppeteer.launch({
-        headless: true,
-        args: ['--no-sandbox']
-        }
-    )
-    const page = await browser.newPage()
-
-    const content = await compile('payslip', data)
-
-    await page.setContent(content)
-    await page.emulateMedia('screen')
-    let response = await page.pdf({ 
-        format: 'A4',
-        printBackground: true
-    })
-
-    console.log('done')
-    await browser.close()
-    return response
+    try {
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox']
+            }
+        )
+        const page = await browser.newPage()
+    
+        const content = await compile('payslip', data)
+    
+        await page.setContent(content)
+        await page.emulateMedia('screen')
+        let response = await page.pdf({ 
+            format: 'A4',
+            printBackground: true
+        })
+    
+        console.log('done')
+        await browser.close()
+        return response
+    }catch(error) {
+        console.log(error)
+    }
 }
 
 module.exports.generatePDF = generatePDF
