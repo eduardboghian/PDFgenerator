@@ -4,13 +4,13 @@ const mondays = require('mondays')
 const { Invoice } = require('../models/invoiceModel')
 
 router.post('/generate-invoice', async (req, res)=> {
-    const data = JSON.parse(req.body.data)
+    const data = JSON.parse(req.body)
     let invoiceAmount = 0   
     let totalNetAmount = 0
     let cis = 0
     let dueDate
     let weekEnding
-    let invoiceStatus 
+    let invoiceStatus = []
 
     data.map(data=>{
         totalNetAmount = totalNetAmount+data['Net Amount']
@@ -23,14 +23,12 @@ router.post('/generate-invoice', async (req, res)=> {
 
     let invoices = await Invoice.findOne({date: weekEnding})
     if(invoices) {
-        invoiceStatus = 'invoice alredy stored...'
     }else {
         let storeInvoice = new Invoice({
             date: weekEnding,
             data: data
         })
         storeInvoice = await storeInvoice.save()
-        invoiceStatus = 'invoice stored...'
     }
 
 
@@ -42,8 +40,8 @@ router.post('/generate-invoice', async (req, res)=> {
     data[0].totalNetAmount =totalNetAmount
     data[0].dueDate = dueDate
 
-    generatePDF(data)
-
+    invoiceStatus.push( await generatePDF(data))
+    console.log(invoiceStatus)
     res.send(invoiceStatus)
 })
 

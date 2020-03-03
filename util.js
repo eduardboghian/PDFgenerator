@@ -14,7 +14,6 @@ hbs.registerHelper('dateFormat', function(value, format){
 })
 
 async function generatePDF(data) {
-    try {
         const browser = await puppeteer.launch({
             headless: true,
             args: ['--no-sandbox']
@@ -27,20 +26,14 @@ async function generatePDF(data) {
 
         await page.setContent(content)
         await page.emulateMedia('screen')
-        await page.pdf({
-            path: `${require('path').join(require('os').homedir(), 'Desktop')}/invoice.pdf`,
+        let response = await page.pdf({
             format: 'A4',
             printBackground: true
         })
 
         console.log('done')
         await browser.close()
-        process.exit()
-
-    }
-    catch(err) {
-        console.log(err)
-    }
+        return response
 }
 
 async function generatePayslipPDF(data) {
@@ -51,25 +44,17 @@ async function generatePayslipPDF(data) {
     )
     const page = await browser.newPage()
 
-    const osHomedir = require('os-homedir');
-    console.log(osHomedir());
-    let homedir = osHomedir()
-
-    console.log(data)
     const content = await compile('payslip', data)
 
     await page.setContent(content)
     await page.emulateMedia('screen')
-    const date = data.Date.replace(/\//g, '')
-    
-    await page.pdf({
-        path: `${require('path').join(homedir, 'Desktop')}/${data.Name}.pdf`,  
+    let response = await page.pdf({ 
         format: 'A4',
         printBackground: true
     })
 
     console.log('done')
-    let response = await browser.close()
+    await browser.close()
     return response
 }
 

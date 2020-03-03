@@ -3,15 +3,11 @@ const { generatePayslipPDF } = require('../util')
 const { Payslip } = require('../models/payslipModel')
 
 router.post('/generate-payslip', async (req, res)=> {
-    const data = JSON.parse(req.body.data)
-    let response
-    
-    data.map(async data => {
-        await generatePayslipPDF(data)
+    const data = JSON.parse(req.body)
 
-        const payslips = await Payslip.findOne({ date: data.Date, name: data.name })
+    const responsePDF = await Promise.all(data.map(async data => {
+        const payslips = await Payslip.findOne({ date: data.Date, name: data.Name })
         if(payslips) {
-            response = 'Already stored to db...'
         }else {
             let payslip = new Payslip({
                 date: data.Date,
@@ -19,11 +15,12 @@ router.post('/generate-payslip', async (req, res)=> {
                 data: data
             })
             payslip = await payslip.save()
-            response = 'Stored to db...'
         }
-    })
 
-    res.send(response)
+        return await generatePayslipPDF(data)
+      }))
+      
+      res.send(responsePDF)
 })
 
 module.exports = router 
