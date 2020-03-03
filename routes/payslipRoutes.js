@@ -22,7 +22,6 @@ router.post('/generate-payslip', async (req, res)=> {
     //     return await generatePayslipPDF(data)
     // }))
       responsePDF.push(await generatePayslipPDF(data))
-      console.log(responsePDF)
       res.send(responsePDF)
 })
 
