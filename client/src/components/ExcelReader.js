@@ -40,46 +40,96 @@ class ExcelReader extends Component {
         console.log(JSON.stringify(this.state.data, null, 2));
       });
 
-      axios({
-        method: 'POST',
-        url: `/api/${this.props.path}`, 
-        data: [JSON.stringify(this.state.data, null, 2)],
-        responseType: 'stream'
-      })
-      .then(res=> {
-          res.data.map(data=> {
-              console.log(data)
-              function arrayBufferToBase64(buffer) {
-                let binary = '';
-                let bytes = new Uint8Array(buffer);
-                let len = bytes.byteLength;
-                for (let i = 0; i < len; i++) {
-                    binary += String.fromCharCode(bytes[i]);
+      if( this.state.path === 'generate-invoice' ) {
+        axios({
+          method: 'POST',
+          url: `/api/${this.props.path}`, 
+          data: [JSON.stringify(this.state.data, null, 2)],
+          responseType: 'stream'
+        })
+        .then(res=> {
+            res.data.map(data=> {
+                console.log(data)
+                function arrayBufferToBase64(buffer) {
+                  let binary = '';
+                  let bytes = new Uint8Array(buffer);
+                  let len = bytes.byteLength;
+                  for (let i = 0; i < len; i++) {
+                      binary += String.fromCharCode(bytes[i]);
+                  }
+                  return window.btoa(binary);
                 }
-                return window.btoa(binary);
-              }
-              let b64 = arrayBufferToBase64(data.data)
-
-
-              // Embed the PDF into the HTML page and show it to the user
-              let obj = document.createElement('object');
-              obj.style.width = '70%';
-              obj.style.height = '842pt';
-              obj.style.float = 'right'
-              obj.type = 'application/pdf';
-              obj.data = 'data:application/pdf;base64,' + b64;
-              document.body.appendChild(obj);
-
-              // Insert a link that allows the user to download the PDF file
-              let link = document.createElement('a');
-              link.innerHTML = 'Download PDF file';
-              link.download = 'file.pdf';
-              link.href = 'data:application/octet-stream;base64,' + b64;
-              document.body.appendChild(link);
-
+                let b64 = arrayBufferToBase64(data.data)
+        
+        
+                // Embed the PDF into the HTML page and show it to the user
+                let obj = document.createElement('object');
+                obj.style.width = '70%';
+                obj.style.height = '842pt';
+                obj.style.float = 'right'
+                obj.type = 'application/pdf';
+                obj.data = 'data:application/pdf;base64,' + b64;
+                document.body.appendChild(obj);
+        
+                // Insert a link that allows the user to download the PDF file
+                let link = document.createElement('a');
+                link.innerHTML = 'Download PDF file';
+                link.download = 'file.pdf';
+                link.href = 'data:application/octet-stream;base64,' + b64;
+                document.body.appendChild(link);
+        
+            })
+        
+        })
+        .catch(err=> console.log(err))
+      }else {
+          const data =  [JSON.stringify(this.state.data, null, 2)]
+          data.map(data=> {
+            axios({
+              method: 'POST',
+              url: `/api/${this.props.path}`, 
+              data: {data: data},
+              responseType: 'stream'
+            })
+            .then(res=> {
+                res.data.map(data=> {
+                    console.log(data)
+                    function arrayBufferToBase64(buffer) {
+                      let binary = '';
+                      let bytes = new Uint8Array(buffer);
+                      let len = bytes.byteLength;
+                      for (let i = 0; i < len; i++) {
+                          binary += String.fromCharCode(bytes[i]);
+                      }
+                      return window.btoa(binary);
+                    }
+                    let b64 = arrayBufferToBase64(data.data)
+            
+            
+                    // Embed the PDF into the HTML page and show it to the user
+                    let obj = document.createElement('object');
+                    obj.style.width = '70%';
+                    obj.style.height = '842pt';
+                    obj.style.float = 'right'
+                    obj.type = 'application/pdf';
+                    obj.data = 'data:application/pdf;base64,' + b64;
+                    document.body.appendChild(obj);
+            
+                    // Insert a link that allows the user to download the PDF file
+                    let link = document.createElement('a');
+                    link.innerHTML = 'Download PDF file';
+                    link.download = 'file.pdf';
+                    link.href = 'data:application/octet-stream;base64,' + b64;
+                    document.body.appendChild(link);
+            
+                })
+            
+            })
+            .catch(err=> console.log(err))
           })
-      })
-      .catch(err=> console.log(err))
+
+      }
+      
     };
  
     if (rABS) {
@@ -106,3 +156,4 @@ class ExcelReader extends Component {
 }
  
 export default ExcelReader;
+
