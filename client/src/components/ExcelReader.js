@@ -37,7 +37,7 @@ class ExcelReader extends Component {
       const data = XLSX.utils.sheet_to_json(ws);
       /* Update state */
       this.setState({ data: data, cols: make_cols(ws['!ref']) }, () => {
-        console.log(JSON.stringify(this.state.data, null, 2));
+        //console.log(JSON.stringify(this.state.data, null, 2));
       });
 
       if( this.state.path === 'generate-invoice' ) {
@@ -83,17 +83,18 @@ class ExcelReader extends Component {
         })
         .catch(err=> console.log(err))
       }else {
-          const data =  [JSON.stringify(this.state.data, null, 2)]
-          data.map(data=> {
+          const jsonString =  JSON.stringify(this.state.data, null, 2)
+          const data = JSON.parse(jsonString)
+          
+          data.map(data => {
             axios({
               method: 'POST',
               url: `/api/${this.props.path}`, 
-              data: {data: data},
+              data: data,
               responseType: 'stream'
             })
             .then(res=> {
                 res.data.map(data=> {
-                    console.log(data)
                     function arrayBufferToBase64(buffer) {
                       let binary = '';
                       let bytes = new Uint8Array(buffer);
@@ -156,4 +157,8 @@ class ExcelReader extends Component {
 }
  
 export default ExcelReader;
+
+
+
+
 
