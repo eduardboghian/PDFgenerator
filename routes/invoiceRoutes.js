@@ -23,8 +23,8 @@ router.post('/generate-invoice', async (req, res)=> {
         totalNetAmount = totalNetAmount+data['Net Amount']
         cis = cis+data.CIS
         invoiceAmount = totalNetAmount-cis
-        if(data['Week Ending']) {
-            weekEnding = data['Week Ending']
+        if(data['DATE OF ISSUE']) {
+            weekEnding = data['DATE OF ISSUE']
         }
     })
 

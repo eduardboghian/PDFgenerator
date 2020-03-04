@@ -12,16 +12,16 @@ router.post('/generate-payslip', async (req, res)=> {
     let responsePDF = []
 
 
-    const payslips = await Payslip.findOne({ date: data.Date, name: data.Name })
-    if(payslips) {
-    }else {
-        let payslip = new Payslip({
-            date: data.Date,
-            name: data.Name,
-            data: data
-        })
-        payslip = await payslip.save()
-    }
+    // const payslips = await Payslip.findOne({ date: data.Date, name: data.Name })
+    // if(payslips) {
+    // }else {
+    //     let payslip = new Payslip({
+    //         date: data.Date,
+    //         name: data.Name,
+    //         data: data
+    //     })
+    //     payslip = await payslip.save()
+    // }
     
     responsePDF.push(await generatePayslipPDF(data))
     res.send(responsePDF)
