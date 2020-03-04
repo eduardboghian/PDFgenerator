@@ -210,17 +210,16 @@
         color: #777;
     }
     .terms {
-        position: absolute;
-        bottom: 100px;
         font-size: 12px;
         color: #777;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
+        width: 75%;
+        float: right;
+        margin-top: 50px;
     }
     .terms p {
         color: #f00;
         margin: 0;
+        width: 100%;
     }
 
     .summary {
@@ -340,9 +339,10 @@
                 <ul><li class="float-left"> Total Tax Amount </li><li class="float-right"> £0.00 </li></ul>
                 <div class='invoice-total'>INVOICE TOTAL<br/><p>£{{[0].invoiceAmount}}</p> </div>
             </div>
+            <div class="terms">TERMS<br /> <p>Invoice to be paid before {{[0].dueDate}} </p></div>
         </div>
 
-        <div class="terms">TERMS<br /> <p>Invoice to be paid before {{[0].dueDate}} </p></div>
+        
         <div class="footer">
             BANK REVOLUT<br />
             Account Holder WORK RULES LTD<br />

@@ -3,7 +3,6 @@ const { generatePayslipPDF } = require('../util')
 const { Payslip } = require('../models/payslipModel')
 
 router.post('/generate-payslip', async (req, res)=> {
-    console.log(req.body)
     let data = req.body
 
     data.B = data.Amount*0.20
