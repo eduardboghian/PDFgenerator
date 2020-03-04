@@ -11,6 +11,17 @@ const payslipRoutes = require('./routes/payslipRoutes')
 
 const app = express()
 
+// HANDLEBARS
+
+const Handlebars = require('handlebars')
+
+Handlebars.registerHelper('checkIndex', function(index) {
+    if(index == 30) {
+      return new Handlebars.SafeString('<div class="separator"></div><div class="grey"></div>');
+    }
+});
+
+
 
 // MIDDLEWARE
 

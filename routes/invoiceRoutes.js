@@ -4,7 +4,6 @@ const mondays = require('mondays')
 const { Invoice } = require('../models/invoiceModel')
 
 router.post('/generate-invoice', async (req, res)=> {
-    console.log(req.body)
     const data = JSON.parse(req.body)
     let invoiceAmount = 0   
     let totalNetAmount = 0
@@ -12,6 +11,13 @@ router.post('/generate-invoice', async (req, res)=> {
     let dueDate
     let weekEnding
     let invoiceStatus = []
+    function checkIndex(index) {
+        if(index == 30) {
+            return true
+        }else {
+            return false
+        }
+    }
 
     data.map(data=>{
         totalNetAmount = totalNetAmount+data['Net Amount']
@@ -40,6 +46,7 @@ router.post('/generate-invoice', async (req, res)=> {
     data[0].cis = cis
     data[0].totalNetAmount =totalNetAmount
     data[0].dueDate = dueDate
+    data[0].checkIndex = checkIndex
 
     invoiceStatus.push( await generatePDF(data))
     console.log(invoiceStatus)

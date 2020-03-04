@@ -260,6 +260,12 @@
         float: right;
     }
 
+    .separator {
+        width: 100%;
+        height: 250px;
+        background-color: inherit;
+    }
+
 </style>   
 <body>
     <div class="wr">
@@ -317,6 +323,9 @@
                             <li class="align-right"> £{{data.CIS}} </li>
                             <li class="align-center"> £{{data.VAT}} </li>
                         </ul>
+                        {{#checkIndex @index }}
+                            
+                        {{/checkIndex}}
                     {{/each}}
                     <ul class="cis-row">
                         <li class="align-left">CIS WE {{[0].[Week Ending]}}</li>
