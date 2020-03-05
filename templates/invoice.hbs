@@ -196,6 +196,37 @@
         box-sizing: border-box;
         padding: 10px 0 0 30px;
     }
+
+    .footer-2 {
+        width: 80%;
+        height: 80px;
+        background-color: #F44E00;
+        position: absolute;
+        top: 188%;
+        color: #fff;
+        font-size: 10px;
+        line-height: 16px;
+        box-sizing: border-box;
+        padding: 10px 0 0 30px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-3 {
+        width: 80%;
+        height: 80px;
+        background-color: #F44E00;
+        position: absolute;
+        top: 288%;
+        color: #fff;
+        font-size: 10px;
+        line-height: 16px;
+        box-sizing: border-box;
+        padding: 10px 0 0 30px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     .cis-row {
         display: grid;
         grid-template-columns: 80% 20%;
@@ -325,6 +356,7 @@
                         {{#checkIndex @index }}
                             
                         {{/checkIndex}}
+                        
                     {{/each}}
                     <ul class="cis-row">
                         <li class="align-left">CIS WE {{[0].[Week Ending]}}</li>
@@ -349,6 +381,11 @@
             Account Number: 34 53 21 96<br />
             Sort Code: 04-00-75<br />
         </div>
+        
     </div>
+    {{#addFooter }}
+    {{/addFooter}}
+    {{#scndFooter}}
+    {{/scndFooter}}
 </body>
 </html>

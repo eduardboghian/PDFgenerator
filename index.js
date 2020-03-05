@@ -14,14 +14,35 @@ const app = express()
 // HANDLEBARS
 
 const Handlebars = require('handlebars')
-
+let fstFooter = 0
+let sncdFooter = 0 
 Handlebars.registerHelper('checkIndex', function(index) {
     if(index == 30) {
+      fstFooter = index
+      return new Handlebars.SafeString('<div class="separator"></div><div class="grey"></div>');
+    }
+
+    if(index == 80) {
+      scndFooter = index
       return new Handlebars.SafeString('<div class="separator"></div><div class="grey"></div>');
     }
 });
 
+Handlebars.registerHelper('addFooter', function() {
+  if(fstFooter == 30) {
+    fstFooter = 0
+    return new Handlebars.SafeString('<div class="footer-2">BANK REVOLUT<br />Account Holder WORK RULES LTD<br />Account Number: 34 53 21 96<br />Sort Code: 04-00-75<br /></div>');
+  }
+  return 
+})
 
+Handlebars.registerHelper('scndFooter', function() {
+  if(scndFooter == 80) {
+    scndFooter = 0
+    return new Handlebars.SafeString('<div class="footer-3">BANK REVOLUT<br />Account Holder WORK RULES LTD<br />Account Number: 34 53 21 96<br />Sort Code: 04-00-75<br /></div>');
+  }
+  return 
+})
 
 // MIDDLEWARE
 
