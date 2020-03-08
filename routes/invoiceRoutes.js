@@ -23,8 +23,8 @@ router.post('/generate-invoice', async (req, res)=> {
 
     data.map(data=>{
         data.CIS = data.CIS.toFixed(2)
-        data['Worked Hours'] = data['Worked Hours'].toFixed(2)
-        data['Unit Cost'] = data['Unit Cost'].toFixed(2)
+        data['Worked Hours'] = data['Worked Hours'].toFixed(1)
+        data['Unit Cost'] = data['Unit Cost'].toFixed(1)
         data['Net Amount'] = data['Net Amount'].toFixed(2)
         data.VAT = data.VAT.toFixed(2)
 
