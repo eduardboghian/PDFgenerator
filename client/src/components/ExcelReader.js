@@ -40,6 +40,10 @@ class ExcelReader extends Component {
         //console.log(JSON.stringify(this.state.data, null, 2));
       });
 
+      let testdata = JSON.parse([JSON.stringify(this.state.data, null, 2)])
+
+      console.log(testdata)
+
       if( this.props.path === 'generate-invoice') {
         axios({
           method: 'POST',

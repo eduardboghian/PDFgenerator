@@ -5,6 +5,8 @@ const { Invoice } = require('../models/invoiceModel')
 
 router.post('/generate-invoice', async (req, res)=> {
     const data = JSON.parse(req.body)
+    console.log(data)
+    console.log('test:', typeof data[4].CIS)
     let invoiceAmount = 0   
     let totalNetAmount = 0
     let cis = 0
@@ -20,9 +22,17 @@ router.post('/generate-invoice', async (req, res)=> {
     }
 
     data.map(data=>{
-        totalNetAmount = totalNetAmount+data['Net Amount']
-        cis = cis+data.CIS
-        invoiceAmount = totalNetAmount-cis
+        data.CIS = data.CIS.toFixed(2)
+        data['Worked Hours'] = data['Worked Hours'].toFixed(2)
+        data['Unit Cost'] = data['Unit Cost'].toFixed(2)
+        data['Net Amount'] = data['Net Amount'].toFixed(2)
+        data.VAT = data.VAT.toFixed(2)
+
+
+        totalNetAmount = parseFloat( totalNetAmount) + parseFloat( data['Net Amount'])
+        cis = parseFloat(cis) + parseFloat(data.CIS)
+        //console.log(totalNetAmount)
+        invoiceAmount = parseFloat(totalNetAmount) - cis
         if(data['DATE OF ISSUE']) {
             weekEnding = data['DATE OF ISSUE']
         }
@@ -37,7 +47,6 @@ router.post('/generate-invoice', async (req, res)=> {
         })
         storeInvoice = await storeInvoice.save()
     }
-
 
     date = new Date(weekEnding)
     dueDate = mondays.getNextMonday(date).toDateString()
