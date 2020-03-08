@@ -15,7 +15,7 @@ const app = express()
 
 const Handlebars = require('handlebars')
 let fstFooter = 0
-let sncdFooter = 0 
+let scndFooter = 0 
 Handlebars.registerHelper('checkIndex', function(index) {
     if(index == 30) {
       fstFooter = index
