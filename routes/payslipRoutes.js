@@ -5,8 +5,12 @@ const { Payslip } = require('../models/payslipModel')
 router.post('/generate-payslip', async (req, res)=> {
     let data = req.body
 
-    data.B = data.Amount*0.20
-    data.AB = data.Amount - data.B
+    data.Amount = data.Amount.toFixed(2)
+    data.B =  parseFloat(data.Amount)*0.20
+    data.B = data.B.toFixed(2)
+    data.AB = parseFloat(data.Amount) - data.B
+    data.AB = data.AB.toFixed(2)
+
 
     let responsePDF = []
 
