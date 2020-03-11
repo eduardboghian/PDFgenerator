@@ -41,9 +41,10 @@ async function generatePayslipPDF(data) {
     try {
         const browser = await puppeteer.launch({
             headless: true,
-            args: ['--no-sandbox']
-            }
-        )
+            args: ['--no-sandbox'],
+            ignoreDefaultArgs: ['--disable-extensions']
+        })
+        
         const page = await browser.newPage()
     
         const content = await compile('payslip', data)
