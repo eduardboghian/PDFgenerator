@@ -16,7 +16,8 @@ hbs.registerHelper('dateFormat', function(value, format){
 async function generatePDF(data) {
         const browser = await puppeteer.launch({
             headless: true,
-            args: ['--no-sandbox']
+            args: ['--no-sandbox'],
+            ignoreDefaultArgs: ['--disable-extensions']
          }
         )
         const page = await browser.newPage()
