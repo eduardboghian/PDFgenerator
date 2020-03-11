@@ -87,7 +87,8 @@ class ExcelReader extends Component {
         })
         .catch(err=> console.log(err))
       }else if(this.props.path === 'generate-payslip') {
-          const jsonString =  JSON.stringify(this.state.data, null, 2)
+        (async function(){
+          const jsonString =  JSON.stringify(await this.state.data, null, 2)
           const data = JSON.parse(jsonString)
           data.map(data => {
             axios({
@@ -131,7 +132,7 @@ class ExcelReader extends Component {
             })
             .catch(err=> console.log(err))
           })
-
+        })()
       }
       
     };
