@@ -4,7 +4,6 @@ const path = require('path')
 const dotenv = require('dotenv')
 const cors = require('cors')
 const mongoose = require('mongoose')
-const { generatePayslipPDF } = require('./util')
 
 const invoiceRoutes = require('./routes/invoiceRoutes')
 const payslipRoutes = require('./routes/payslipRoutes')
@@ -83,5 +82,22 @@ if (process.env.NODE_ENV === "production") {
 
 // PORT
 
+const cluster = require('cluster')
+const numCPUs = require('os').cpus().length
 const PORT = process.env.PORT || 3001
-app.listen(PORT)  
+
+if (cluster.isMaster) {
+    console.log(`Master ${process.pid} is running`);
+  
+    // Fork workers.
+    for (let i = 0; i < numCPUs; i++) {
+      cluster.fork();
+    }
+  
+    cluster.on('exit', (worker, code, signal) => {
+      console.log(`worker ${worker.process.pid} died`);
+    })
+} else {
+    app.listen(PORT) 
+}
+ 

@@ -5,8 +5,6 @@ const { Invoice } = require('../models/invoiceModel')
 
 router.post('/generate-invoice', async (req, res)=> {
     const data = JSON.parse(req.body)
-    console.log(data)
-    console.log('test:', typeof data[4].CIS)
     let invoiceAmount = 0   
     let totalNetAmount = 0
     let cis = 0
