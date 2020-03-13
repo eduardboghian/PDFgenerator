@@ -49,8 +49,8 @@ router.post('/generate-invoice', async (req, res)=> {
     date = new Date(weekEnding)
     dueDate = mondays.getNextMonday(date).toDateString()
     
-    data[0].invoiceAmount = invoiceAmount
-    data[0].cis = cis
+    data[0].invoiceAmount = invoiceAmount.toFixed(2)
+    data[0].cis = cis.toFixed(2)
     data[0].totalNetAmount =totalNetAmount
     data[0].dueDate = dueDate
     data[0].checkIndex = checkIndex
