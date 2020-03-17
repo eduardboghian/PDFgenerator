@@ -39,6 +39,7 @@ async function generatePDF(data) {
 
 async function generatePayslipPDF(data) {
     try {
+        console.log('data for pdf...',data)
         const browser = await puppeteer.launch({
             headless: true,
             args: ['--no-sandbox'],
@@ -60,7 +61,7 @@ async function generatePayslipPDF(data) {
         await browser.close()
         return response
     }catch(error) {
-        console.log(error)
+        console.log('error thrown by puppeteer...',error)
     }
 }
 
