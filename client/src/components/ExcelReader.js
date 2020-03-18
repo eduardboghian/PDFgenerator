@@ -53,7 +53,6 @@ class ExcelReader extends Component {
         })
         .then(res=> {
             res.data.map(data=> {
-                console.log(data)
                 function arrayBufferToBase64(buffer) {
                   let binary = '';
                   let bytes = new Uint8Array(buffer);
@@ -63,6 +62,7 @@ class ExcelReader extends Component {
                   }
                   return window.btoa(binary);
                 }
+                console.log(data.data)
                 let b64 = arrayBufferToBase64(data.data)
         
         
