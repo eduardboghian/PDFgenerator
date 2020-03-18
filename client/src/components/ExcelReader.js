@@ -62,7 +62,6 @@ class ExcelReader extends Component {
                   }
                   return window.btoa(binary);
                 }
-                console.log(data.data)
                 let b64 = arrayBufferToBase64(data.data)
         
         
@@ -98,7 +97,7 @@ class ExcelReader extends Component {
               responseType: 'stream'
             })
             .then(res=> {
-                res.data.map(data=> {
+                res.data.map(async data=> {
                     function arrayBufferToBase64(buffer) {
                       let binary = '';
                       let bytes = new Uint8Array(buffer);
@@ -108,7 +107,8 @@ class ExcelReader extends Component {
                       }
                       return window.btoa(binary);
                     }
-                    let b64 = arrayBufferToBase64(data.data)
+                    console.log(data.data)
+                    let b64 = arrayBufferToBase64(await data.data)
             
             
                     // Embed the PDF into the HTML page and show it to the user
