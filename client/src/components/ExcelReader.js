@@ -112,13 +112,13 @@ class ExcelReader extends Component {
                     console.log(b64)
             
                     // Embed the PDF into the HTML page and show it to the user
-                    let obj = document.createElement('object');
-                    obj.style.width = '70%';
-                    obj.style.height = '842pt';
-                    obj.style.float = 'right'
-                    obj.type = 'application/pdf';
-                    obj.data = 'data:application/pdf;base64,' + b64;
-                    document.body.appendChild(obj);
+                    // let obj = document.createElement('object');
+                    // obj.style.width = '70%';
+                    // obj.style.height = '842pt';
+                    // obj.style.float = 'right'
+                    // obj.type = 'application/pdf';
+                    // obj.data = 'data:application/pdf;base64,' + b64;
+                    // document.body.appendChild(obj);
             
                     // Insert a link that allows the user to download the PDF file
                     let link = document.createElement('a');
