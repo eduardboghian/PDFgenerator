@@ -15,7 +15,7 @@ li {
 }
 
 a {
-    width: 150px;
+    /* width: 150px;
     height: 40px;
     background-color: #F44E00;
     position: relative;
@@ -26,7 +26,7 @@ a {
     margin: 20px;
     text-align: center;
     line-height: 40px;
-    z-index: 10 !important;
+    z-index: 10 !important; */
 }
 
 .App {
@@ -93,12 +93,4 @@ a {
 
 .payslip-wr {
     top: 400px;
-}
-
-.buttons {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 70%;
-    height: auto;
 }

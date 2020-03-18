@@ -113,8 +113,9 @@ class ExcelReader extends Component {
                 link.innerHTML = `${res.data[0].name}`;
                 link.download = `${res.data[0].name} - ${res.data[0].date}.pdf`;
                 link.href = 'data:application/octet-stream;base64,' + b64;
-                document.getElementById('buttons').appendChild(link);
-            
+                document.body.appendChild(link);
+                link.click()
+                link.remove()
             })
             .catch(err=> console.log(err))
           })
