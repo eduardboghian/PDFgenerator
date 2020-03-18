@@ -107,9 +107,9 @@ class ExcelReader extends Component {
                       }
                       return window.btoa(binary);
                     }
-                    console.log(data.data)
-                    let b64 = arrayBufferToBase64(await data.data)
-            
+                    
+                    let b64 = arrayBufferToBase64( await data.data)
+                    console.log(b64)
             
                     // Embed the PDF into the HTML page and show it to the user
                     let obj = document.createElement('object');
