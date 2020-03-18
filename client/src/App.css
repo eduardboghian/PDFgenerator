@@ -31,7 +31,6 @@ a {
 
 .App {
     width: 100%;
-    height: 100%;
 }
 
 .wr {
@@ -80,14 +79,26 @@ a {
     padding: 10px;
 }
 
+.invoice-wr {
+    top: 150px
+}
+
 .invoice-wr, .payslip-wr {
     float: left;
     margin: 50px 0 0 10px;
 
-    position: absolute;
-    left: 0;
+    position: fixed;
+    left: 20px;
 }
 
 .payslip-wr {
-    top: 300px;
+    top: 400px;
+}
+
+.buttons {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 70%;
+    height: auto;
 }

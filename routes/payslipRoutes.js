@@ -16,8 +16,12 @@ router.post('/generate-payslip', async (req, res)=> {
     data.AB = parseFloat(data.Amount) - data.B
     data.AB = data.AB.toFixed(2)
 
-
     let responsePDF = []
+    responsePDF.push({ 
+        "name": data.Name,
+        "date": data.Date
+    })
+
     const compile = async function(templateName, data) {
         const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`)
         const html = await fs.readFile(filePath, 'utf-8')

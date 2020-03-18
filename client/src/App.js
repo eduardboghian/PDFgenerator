@@ -14,6 +14,8 @@ function App() {
           <h1>GeneratePayslips</h1>
           <ExcelReader path={'generate-payslip'}/>
         </div>
+
+        <div className="buttons" id='buttons'></div>
     </div>
   )
 }

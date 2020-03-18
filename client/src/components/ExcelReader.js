@@ -96,38 +96,24 @@ class ExcelReader extends Component {
               data: data,
               responseType: 'stream'
             })
-            .then(res=> {
-                res.data.map(async data=> {
-                    function arrayBufferToBase64(buffer) {
-                      let binary = '';
-                      let bytes = new Uint8Array(buffer);
-                      let len = bytes.byteLength;
-                      for (let i = 0; i < len; i++) {
-                          binary += String.fromCharCode(bytes[i]);
-                      }
-                      return window.btoa(binary);
-                    }
-                    
-                    let b64 = arrayBufferToBase64( await data.data)
-                    console.log(b64)
-            
-                    // Embed the PDF into the HTML page and show it to the user
-                    // let obj = document.createElement('object');
-                    // obj.style.width = '70%';
-                    // obj.style.height = '842pt';
-                    // obj.style.float = 'right'
-                    // obj.type = 'application/pdf';
-                    // obj.data = 'data:application/pdf;base64,' + b64;
-                    // document.body.appendChild(obj);
-            
-                    // Insert a link that allows the user to download the PDF file
-                    let link = document.createElement('a');
-                    link.innerHTML = 'Download PDF file';
-                    link.download = 'file.pdf';
-                    link.href = 'data:application/octet-stream;base64,' + b64;
-                    document.body.appendChild(link);
-            
-                })
+            .then(async res=> {
+                console.log(res)
+                function arrayBufferToBase64(buffer) {
+                  let binary = '';
+                  let bytes = new Uint8Array(buffer);
+                  let len = bytes.byteLength;
+                  for (let i = 0; i < len; i++) {
+                      binary += String.fromCharCode(bytes[i]);
+                  }
+                  return window.btoa(binary);
+                }
+                let b64 = arrayBufferToBase64( await res.data[1].data)
+
+                let link = document.createElement('a');
+                link.innerHTML = `${res.data[0].name}`;
+                link.download = `${res.data[0].name} - ${res.data[0].date}.pdf`;
+                link.href = 'data:application/octet-stream;base64,' + b64;
+                document.getElementById('buttons').appendChild(link);
             
             })
             .catch(err=> console.log(err))
