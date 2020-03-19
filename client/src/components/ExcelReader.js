@@ -111,8 +111,8 @@ class ExcelReader extends Component {
                   let b64 = arrayBufferToBase64( await res.data[1].data)
   
                   let link = document.createElement('a');
-                  link.innerHTML = `${res.data[0].name}`;
-                  link.download = `Payslip-week-ending-${res.data[0].date}-${res.data[0].name}.pdf`;
+                  link.innerHTML = `${res.data[0].Name}`;
+                  link.download = `Payslip-week-ending-${res.data[0].Date}-${res.data[0].Name}.pdf`;
                   link.href = 'data:application/octet-stream;base64,' + b64;
                   document.body.appendChild(link);
                   link.click()
@@ -121,7 +121,7 @@ class ExcelReader extends Component {
                   axios({
                     method: 'POST',
                     url: `/api/${this.props.path}`, 
-                    data: data,
+                    data: res.data[0],
                     responseType: 'stream'
                   })
                   .then(async res=> {

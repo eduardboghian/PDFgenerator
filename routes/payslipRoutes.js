@@ -17,10 +17,7 @@ router.post('/generate-payslip', async (req, res)=> {
     data.AB = data.AB.toFixed(2)
 
     let responsePDF = []
-    responsePDF.push({ 
-        "name": data.Name,
-        "date": data.Date
-    })
+    responsePDF.push(data)
 
     const compile = async function(templateName, data) {
         const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`)
