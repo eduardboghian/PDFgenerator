@@ -88,7 +88,41 @@ class ExcelReader extends Component {
       }else if(this.props.path === 'generate-payslip') {
           const jsonString = JSON.stringify(this.state.data, null, 2)
           const data = JSON.parse(jsonString)
-          console.log(data)
+
+          const generatePDF = (data) => {
+			axios({                 
+                method: 'POST',
+                url: `/api/${this.props.path}`, 
+                data: data,
+                responseType: 'stream'
+              })
+              .then(async res=> {
+                  console.log(res)
+                  function arrayBufferToBase64(buffer) {
+                    let binary = '';
+                    let bytes = new Uint8Array(buffer);
+                    let len = bytes.byteLength;
+                    for (let i = 0; i < len; i++) {
+                        binary += String.fromCharCode(bytes[i]);
+                    }
+                    return window.btoa(binary);
+                  }
+                  let b64 = arrayBufferToBase64( await res.data[1].data)
+  
+                  let link = document.createElement('a');
+                  link.innerHTML = `${res.data[0].Name}`;
+                  link.download = `Payslip-week-ending-${res.data[0].Date}-${res.data[0].Name}.pdf`;
+                  link.href = 'data:application/octet-stream;base64,' + b64;
+                  document.body.appendChild(link);
+                  link.click()
+                  link.remove()
+              })
+              .catch(err=> {
+                generatePDF(data)
+                console.log(err)
+              })
+          }
+
           data.map(data => {
             axios({                 
               method: 'POST',
@@ -118,37 +152,7 @@ class ExcelReader extends Component {
                 link.remove()
             })
             .catch(err=> {
-              axios({                 
-                method: 'POST',
-                url: `/api/${this.props.path}`, 
-                data: data,
-                responseType: 'stream'
-              })
-              .then(async res=> {
-                  console.log(res)
-                  function arrayBufferToBase64(buffer) {
-                    let binary = '';
-                    let bytes = new Uint8Array(buffer);
-                    let len = bytes.byteLength;
-                    for (let i = 0; i < len; i++) {
-                        binary += String.fromCharCode(bytes[i]);
-                    }
-                    return window.btoa(binary);
-                  }
-                  let b64 = arrayBufferToBase64( await res.data[1].data)
-  
-                  let link = document.createElement('a');
-                  link.innerHTML = `${res.data[0].Name}`;
-                  link.download = `Payslip-week-ending-${res.data[0].Date}-${res.data[0].Name}.pdf`;
-                  link.href = 'data:application/octet-stream;base64,' + b64;
-                  document.body.appendChild(link);
-                  link.click()
-                  link.remove()
-              })
-              .catch(err=> {
-                
-                console.log(err)
-              })
+			  generatePDF(data)
               console.log(err)
             })
           })
