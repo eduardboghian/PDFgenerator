@@ -90,69 +90,38 @@ class ExcelReader extends Component {
           const data = JSON.parse(jsonString)
           console.log(data)
           data.map(data => {
-            axios({
+            axios({                 
               method: 'POST',
               url: `/api/${this.props.path}`, 
               data: data,
               responseType: 'stream'
             })
             .then(async res=> {
-                if(res.status === 200) {
-                  console.log(res)
-                  function arrayBufferToBase64(buffer) {
-                    let binary = '';
-                    let bytes = new Uint8Array(buffer);
-                    let len = bytes.byteLength;
-                    for (let i = 0; i < len; i++) {
-                        binary += String.fromCharCode(bytes[i]);
-                    }
-                    return window.btoa(binary);
+                console.log(res)
+                function arrayBufferToBase64(buffer) {
+                  let binary = '';
+                  let bytes = new Uint8Array(buffer);
+                  let len = bytes.byteLength;
+                  for (let i = 0; i < len; i++) {
+                      binary += String.fromCharCode(bytes[i]);
                   }
-                  let b64 = arrayBufferToBase64( await res.data[1].data)
-  
-                  let link = document.createElement('a');
-                  link.innerHTML = `${res.data[0].Name}`;
-                  link.download = `Payslip-week-ending-${res.data[0].Date}-${res.data[0].Name}.pdf`;
-                  link.href = 'data:application/octet-stream;base64,' + b64;
-                  document.body.appendChild(link);
-                  link.click()
-                  link.remove()
-                }else {
-                  axios({
-                    method: 'POST',
-                    url: `/api/${this.props.path}`, 
-                    data: res.data[0],
-                    responseType: 'stream'
-                  })
-                  .then(async res=> {
-                      if(res.status === 200) {
-                        console.log(res)
-                        function arrayBufferToBase64(buffer) {
-                          let binary = '';
-                          let bytes = new Uint8Array(buffer);
-                          let len = bytes.byteLength;
-                          for (let i = 0; i < len; i++) {
-                              binary += String.fromCharCode(bytes[i]);
-                          }
-                          return window.btoa(binary);
-                        }
-                        let b64 = arrayBufferToBase64( await res.data[1].data)
-        
-                        let link = document.createElement('a');
-                        link.innerHTML = `${res.data[0].name}`;
-                        link.download = `Payslip-week-ending-${res.data[0].date}-${res.data[0].name}.pdf`;
-                        link.href = 'data:application/octet-stream;base64,' + b64;
-                        document.body.appendChild(link);
-                        link.click()
-                        link.remove()
-                      }else {
-                        
-                      }
-                  })
-                  .catch(err=> console.log(err))
+                  return window.btoa(binary);
                 }
+                let b64 = arrayBufferToBase64( await res.data[1].data)
+
+                let link = document.createElement('a');
+                link.innerHTML = `${res.data[0].Name}`;
+                link.download = `Payslip-week-ending-${res.data[0].Date}-${res.data[0].Name}.pdf`;
+                link.href = 'data:application/octet-stream;base64,' + b64;
+                document.body.appendChild(link);
+                //link.click()
+                link.remove()
             })
-            .catch(err=> console.log(err))
+            .catch(err=> {
+              console.log(data)
+              console.log(err)
+              
+            })
           })
 
       }
