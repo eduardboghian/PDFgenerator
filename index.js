@@ -16,19 +16,19 @@ const Handlebars = require('handlebars');
 let fstFooter = 0;
 let scndFooter = 0;
 Handlebars.registerHelper('checkIndex', function(index) {
-    if (index === 30) {
+    if (index == 30) {
         fstFooter = index;
         return new Handlebars.SafeString('<div class="separator"></div><div class="grey"></div>');
     }
 
-    if (index === 80) {
+    if (index == 80) {
         scndFooter = index;
         return new Handlebars.SafeString('<div class="separator"></div><div class="grey"></div>');
     }
 });
 
 Handlebars.registerHelper('addFooter', function() {
-    if (fstFooter === 30) {
+    if (fstFooter == 30) {
         fstFooter = 0;
         return new Handlebars.SafeString(
             '<div class="footer-2">BANK REVOLUT<br />Account Holder WORK RULES LTD<br />Account Number: 34 53 21 96<br />Sort Code: 04-00-75<br /></div>'
@@ -37,7 +37,7 @@ Handlebars.registerHelper('addFooter', function() {
 });
 
 Handlebars.registerHelper('scndFooter', function() {
-    if (scndFooter === 80) {
+    if (scndFooter == 80) {
         scndFooter = 0;
         return new Handlebars.SafeString(
             '<div class="footer-3">BANK REVOLUT<br />Account Holder WORK RULES LTD<br />Account Number: 34 53 21 96<br />Sort Code: 04-00-75<br /></div>'
@@ -45,11 +45,17 @@ Handlebars.registerHelper('scndFooter', function() {
     }
 });
 
+Handlebars.registerHelper('logo', function() {
+    return new Handlebars.SafeString(
+        '<div class="logo"> <img src="https://drive.google.com/open?id=1276O8llFemH6kRwo2iKK5um0BfH9nYGl" alt="no" /> </div>'
+    );
+});
+
 // MIDDLEWARE
 const payslipRoutes = require('./routes/payslipRoutes');
 const invoiceRoutes = require('./routes/invoiceRoutes');
 
-app.use(express.static(path.resolve('./public')));
+app.use(express.static(path.resolve('./media/')));
 app.use('/public', express.static(path.resolve('./public')));
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');

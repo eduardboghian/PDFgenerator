@@ -1,14 +1,14 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const invoiceModel = new mongoose.Schema({
     date: {
         type: String,
-        required: true
+        required: true,
     },
     data: {
         type: Array,
-        required: true
-    }
-})
+        required: true,
+    },
+});
 
-module.exports.Invoice = mongoose.model('Invoice', invoiceModel)
+module.exports.Invoice = mongoose.model('Invoice', invoiceModel);

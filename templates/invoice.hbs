@@ -1,14 +1,15 @@
-
 <html>
+
 <head>
     <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
-</head> 
+</head>
 <style>
     body {
         width: 100%;
-        height: 98%;    
+        height: 98%;
         font-family: Arial, Helvetica, sans-serif;
     }
+
     .wr {
         width: 80%;
         height: 90%;
@@ -20,7 +21,7 @@
 
     .top-bar {
         background-color: #F44E00;
-        height: 18px; 
+        height: 18px;
         width: 100%;
         margin: 0 auto 20px;
     }
@@ -33,7 +34,7 @@
         transform: translateX(-50%);
     }
 
-    .company-name { 
+    .company-name {
         font-size: 16px;
         margin-top: 10px;
     }
@@ -70,9 +71,9 @@
         color: #F44E00;
     }
 
-    .logo img {
-        width: 100%;
-        height: 100%;
+    img {
+        width: 100px;
+        height: 100px
     }
 
     .billed-to {
@@ -97,8 +98,8 @@
         display: inline-block;
     }
 
-    .name-bar li {        
-        color: #fff;        
+    .name-bar li {
+        color: #fff;
         font-size: 8px;
         line-height: 15px;
     }
@@ -106,7 +107,7 @@
     ul {
         height: 18px;
         width: 100%;
-        
+
         padding: 0 !important;
     }
 
@@ -142,26 +143,28 @@
         float: right;
         margin-top: 45px;
     }
-    .align-left { 
-        align-self: left; 
+
+    .align-left {
+        align-self: left;
         padding-left: 3px;
     }
-    .align-right { 
-        align-self: right; 
+
+    .align-right {
+        align-self: right;
         justify-self: right;
         padding-right: 3px;
     }
 
-    .align-right-cis { 
-        align-self: right; 
+    .align-right-cis {
+        align-self: right;
         justify-self: right;
         padding-right: 15px;
     }
 
-    .align-center { 
+    .align-center {
         justify-self: center;
     }
-    
+
     .name-bar {
         display: grid;
         grid-template-columns: 33% 15% 13% 16% 13% 10%;
@@ -174,6 +177,7 @@
         height: 5px;
         background-color: #ddd;
     }
+
     .table-row {
         display: grid;
         grid-template-columns: 33% 15% 13% 16% 13% 10%;
@@ -181,9 +185,11 @@
         background: #ddd;
         margin: 0 !important;
     }
+
     .table-row li {
         font-size: 8px;
     }
+
     .footer {
         width: 100%;
         height: 80px;
@@ -234,12 +240,15 @@
         background: #ddd;
         margin: 0 !important;
     }
+
     .cis-row li {
         font-size: 10px;
     }
+
     .summaty li {
         color: #777;
     }
+
     .terms {
         font-size: 12px;
         color: #777;
@@ -247,6 +256,7 @@
         float: right;
         margin-top: 50px;
     }
+
     .terms p {
         color: #f00;
         margin: 0;
@@ -262,16 +272,18 @@
         box-sizing: border-box;
         padding-right: 2px;
     }
+
     .summary ul {
         margin: 1px 0 !important;
     }
 
-    .float-right{ 
-        float: right; 
+    .float-right {
+        float: right;
         padding-right: 15px;
     }
-    .float-left { 
-        float: left; 
+
+    .float-left {
+        float: left;
         color: #777 !important;
         padding-right: 15px;
     }
@@ -295,8 +307,8 @@
         height: 250px;
         background-color: inherit;
     }
+</style>
 
-</style>   
 <body>
     <div class="wr">
         <div class="top-bar"></div>
@@ -306,11 +318,17 @@
             <div class="contact">+447366969175<br />
                 office@workrules.co.uk<br />
                 VAT: Not Registered</div>
-            <div class="billed-to"><p>BILLED TO</p> <br /><span>{{ [0].Company }}<br />
-            {{ [0].[Address 1] }}<br />
-            {{ [0].[Address 2] }}<br />
-            {{ [0].[Address 3] }}</span></div>
-            <div class="logo"><p>Work</p>RULES</div>
+            <div class="billed-to">
+                <p>BILLED TO</p> <br /><span>{{ [0].Company }}<br />
+                    {{ [0].[Address 1] }}<br />
+                    {{ [0].[Address 2] }}<br />
+                    {{ [0].[Address 3] }}</span>
+            </div>
+            <div class="logo">
+                <div class="logo">
+                    <p>Work</p>RULES
+                </div>
+            </div>
         </div>
 
         <div class="main-content">
@@ -345,18 +363,18 @@
                 <div class="table-wr">
                     <div class="grey"></div>
                     {{#each [] as |data| }}
-                        <ul class="table-row">
-                            <li class="align-left">{{data.Worker}}</li>
-                            <li class="align-center">{{data.[Worked Hours]}}</li>
-                            <li class="align-right"> £{{data.[Unit Cost]}} </li>
-                            <li class="align-right"> £{{data.[Net Amount]}} </li>
-                            <li class="align-right"> £{{data.CIS}} </li>
-                            <li class="align-center"> £{{data.VAT}} </li>
-                        </ul>
-                        {{#checkIndex @index }}
-                            
-                        {{/checkIndex}}
-                        
+                    <ul class="table-row">
+                        <li class="align-left">{{data.Worker}}</li>
+                        <li class="align-center">{{data.[Worked Hours]}}</li>
+                        <li class="align-right"> £{{data.[Unit Cost]}} </li>
+                        <li class="align-right"> £{{data.[Net Amount]}} </li>
+                        <li class="align-right"> £{{data.CIS}} </li>
+                        <li class="align-center"> £{{data.VAT}} </li>
+                    </ul>
+                    {{#checkIndex @index }}
+
+                    {{/checkIndex}}
+
                     {{/each}}
                     <ul class="cis-row">
                         <li class="align-left">CIS WE {{[0].[Week Ending]}}</li>
@@ -365,27 +383,44 @@
                 </div>
             </div>
             <div class="summary">
-                <ul><li class="float-left"> Total Net Amount </li> <li class="float-right"> £{{[0].totalNetAmount}} </li></ul>
-                <ul><li class="float-left"> Carriage Net </li><li class="float-right">£0.00</li></ul>
-                <ul><li class="float-left"> VAT </li><li class="float-right"> 0% </li></ul>
-                <ul><li class="float-left"> Total Tax Amount </li><li class="float-right"> £0.00 </li></ul>
-                <div class='invoice-total'>INVOICE TOTAL<br/><p>£{{[0].invoiceAmount}}</p> </div>
+                <ul>
+                    <li class="float-left"> Total Net Amount </li>
+                    <li class="float-right"> £{{[0].totalNetAmount}} </li>
+                </ul>
+                <ul>
+                    <li class="float-left"> Carriage Net </li>
+                    <li class="float-right">£0.00</li>
+                </ul>
+                <ul>
+                    <li class="float-left"> VAT </li>
+                    <li class="float-right"> 0% </li>
+                </ul>
+                <ul>
+                    <li class="float-left"> Total Tax Amount </li>
+                    <li class="float-right"> £0.00 </li>
+                </ul>
+                <div class='invoice-total'>INVOICE TOTAL<br />
+                    <p>£{{[0].invoiceAmount}}</p>
+                </div>
             </div>
-            <div class="terms">TERMS<br /> <p>Invoice to be paid before {{[0].dueDate}} </p></div>
+            <div class="terms">TERMS<br />
+                <p>Invoice to be paid before {{[0].dueDate}} </p>
+            </div>
         </div>
 
-        
+
         <div class="footer">
             BANK REVOLUT<br />
             Account Holder WORK RULES LTD<br />
             Account Number: 34 53 21 96<br />
             Sort Code: 04-00-75<br />
         </div>
-        
+
     </div>
     {{#addFooter }}
     {{/addFooter}}
     {{#scndFooter}}
     {{/scndFooter}}
 </body>
+
 </html>

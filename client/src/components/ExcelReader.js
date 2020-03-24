@@ -69,7 +69,7 @@ class ExcelReader extends Component {
                 let obj = document.createElement('object');
                 obj.style.width = '70%';
                 obj.style.height = '842pt';
-                obj.style.float = 'right'
+                obj.style.float = 'right' 
                 obj.type = 'application/pdf';
                 obj.data = 'data:application/pdf;base64,' + b64;
                 document.body.appendChild(obj);

@@ -1,18 +1,18 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const payslipSchema = new mongoose.Schema({
     date: {
         type: String,
-        required: true
+        required: true,
     },
     name: {
         type: String,
-        required: true
+        required: true,
     },
     data: {
         type: Array,
-        required: true
-    }
-})
+        required: true,
+    },
+});
 
-module.exports.Payslip = mongoose.model('Payslip', payslipSchema)
+module.exports.Payslip = mongoose.model('Payslip', payslipSchema);
