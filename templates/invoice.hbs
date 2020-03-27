@@ -156,6 +156,12 @@
         padding-right: 3px;
     }
 
+    .align-right-vat {
+        align-self: right;
+        justify-self: right;
+        padding-right: 20px;
+    }
+
     .align-right-cis {
         align-self: right;
         justify-self: right;
@@ -168,7 +174,7 @@
 
     .name-bar {
         display: grid;
-        grid-template-columns: 33% 15% 13% 16% 13% 10%;
+        grid-template-columns: 30% 13% 13% 16% 13% 15%;
         background-color: #F44E00;
         margin-bottom: 5px !important;
     }
@@ -181,7 +187,7 @@
 
     .table-row {
         display: grid;
-        grid-template-columns: 33% 15% 13% 16% 13% 10%;
+        grid-template-columns: 30% 13% 13% 16% 13% 15%;
         color: #000;
         background: #ddd;
         margin: 0 !important;
@@ -318,7 +324,7 @@
             <div class="adress">DNS, 382 Kenton Road<br />+447366969175 Harrow, Greater London HA3 8DP</div>
             <div class="contact">+447366969175<br />
                 office@workrules.co.uk<br />
-                VAT: Not Registered</div>
+                VAT: 345308410</div>
             <div class="billed-to">
                 <p>BILLED TO</p> <br /><span>{{ [0].Company }}<br />
                     {{ [0].[Address 1] }}<br />
@@ -359,7 +365,7 @@
                     <li class="align-right">Unit Cost</li>
                     <li class="align-right">Net Amount</li>
                     <li class="align-right">CIS</li>
-                    <li class="align-center">VAT</li>
+                    <li class="align-right-vat">VAT</li>
                 </ul>
                 <div class="table-wr">
                     <div class="grey"></div>
@@ -394,14 +400,14 @@
                 </ul>
                 <ul>
                     <li class="float-left"> VAT </li>
-                    <li class="float-right"> 0% </li>
+                    <li class="float-right"> 20% </li>
                 </ul>
                 <ul>
                     <li class="float-left"> Total Tax Amount </li>
-                    <li class="float-right"> £0.00 </li>
+                    <li class="float-right"> £{{[0].totalTaxAmount}} </li>
                 </ul>
                 <div class='invoice-total'>INVOICE TOTAL<br />
-                    <p>£{{[0].invoiceAmount}}</p>
+                    <p>£{{[0].totalNetAmount}}</p>
                 </div>
             </div>
             <div class="terms">TERMS<br />

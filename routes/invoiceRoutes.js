@@ -7,6 +7,7 @@ router.post('/generate-invoice', async (req, res) => {
   const data = JSON.parse(req.body);
   let invoiceAmount = 0;
   let totalNetAmount = 0;
+  let totalTaxAmount = 0;
   let cis = 0;
   let dueDate;
   let weekEnding;
@@ -23,8 +24,9 @@ router.post('/generate-invoice', async (req, res) => {
     data['Worked Hours'] = data['Worked Hours'].toFixed(1);
     data['Unit Cost'] = data['Unit Cost'].toFixed(1);
     data['Net Amount'] = data['Net Amount'].toFixed(2);
-    data.VAT = data.VAT.toFixed(2);
+    data.VAT = (data['Net Amount']*0.2).toFixed(2);
 
+    totalTaxAmount = parseFloat(totalTaxAmount) + parseFloat(data.VAT)
     totalNetAmount =
       parseFloat(totalNetAmount) + parseFloat(data['Net Amount']);
     cis = parseFloat(cis) + parseFloat(data.CIS);
@@ -48,11 +50,12 @@ router.post('/generate-invoice', async (req, res) => {
   date = new Date(weekEnding);
   dueDate = mondays.getNextMonday(date).toDateString();
 
-  data[0].invoiceAmount = invoiceAmount.toFixed(2);
-  data[0].cis = cis.toFixed(2);
-  data[0].totalNetAmount = totalNetAmount;
+  data[0].invoiceAmount = invoiceAmount.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  data[0].cis = cis.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  data[0].totalNetAmount = totalNetAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   data[0].dueDate = dueDate;
   data[0].checkIndex = checkIndex;
+  data[0].totalTaxAmount = totalTaxAmount.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
   invoiceStatus.push(await generatePDF(data));
   console.log(invoiceStatus);
