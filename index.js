@@ -51,6 +51,12 @@ Handlebars.registerHelper('logo', function() {
     );
 });
 
+Handlebars.registerHelper('utrNino', function(tax, utr) {
+    if(tax === 20) return new Handlebars.SafeString( `<div class="utr">Unique Taxpayer reference (UTR) <p>${utr}</p> </div>` );
+
+    return new Handlebars.SafeString( `<div class="utr">National Insurance Number (NINO) <p>${utr}</p> </div>` );
+});
+
 // MIDDLEWARE
 const payslipRoutes = require('./routes/payslipRoutes');
 const invoiceRoutes = require('./routes/invoiceRoutes');

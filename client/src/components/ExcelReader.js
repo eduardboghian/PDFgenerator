@@ -90,7 +90,7 @@ class ExcelReader extends Component {
           const data = JSON.parse(jsonString)
 
           const generatePDF = (data) => {
-			axios({                 
+			        axios({                 
                 method: 'POST',
                 url: `/api/${this.props.path}`, 
                 data: data,
@@ -152,7 +152,7 @@ class ExcelReader extends Component {
                 link.remove()
             })
             .catch(err=> {
-			  generatePDF(data)
+			        generatePDF(data)
               console.log(err)
             })
           })

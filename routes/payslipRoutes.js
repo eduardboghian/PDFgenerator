@@ -9,11 +9,21 @@ router.post('/generate-payslip', async (req, res) => {
     const data = req.body;
     console.log('loaded data...', data);
 
+    console.log(data.Tax)
+
     data.Amount = data.Amount.toFixed(2);
-    data.B = parseFloat(data.Amount) * 0.2;
+
+    if( data.Tax === 20 ) {
+        data.B = parseFloat(data.Amount) * 0.2;
+    }else if( data.Tax === 30 ) {
+        data.B = parseFloat(data.Amount) * 0.3;
+    }
+
+    
     data.B = data.B.toFixed(2);
     data.AB = parseFloat(data.Amount) - data.B;
     data.AB = data.AB.toFixed(2);
+    data.Tax = data.Tax
 
     const responsePDF = [];
     responsePDF.push(data);
