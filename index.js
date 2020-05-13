@@ -57,6 +57,10 @@ Handlebars.registerHelper('utrNino', function(tax, utr) {
     return new Handlebars.SafeString( `<div class="utr">National Insurance Number (NINO) <p>${utr}</p> </div>` );
 });
 
+const pinger = () => {
+
+}
+
 // MIDDLEWARE
 const payslipRoutes = require('./routes/payslipRoutes');
 const invoiceRoutes = require('./routes/invoiceRoutes');
