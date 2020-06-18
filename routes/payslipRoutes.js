@@ -6,10 +6,9 @@ const path = require('path');
 const moment = require('moment');
 
 router.post('/generate-payslip', async (req, res) => {
+    console.log(req.body)
     const data = req.body;
     console.log('loaded data...', data);
-
-    console.log(data.Tax)
 
     data.Amount = data.Amount.toFixed(2);
 
@@ -18,7 +17,7 @@ router.post('/generate-payslip', async (req, res) => {
     data.B = data.B.toFixed(2);
     data.AB = parseFloat(data.Amount) - data.B;
     data.AB = data.AB.toFixed(2);
-    data.Tax = data.Tax
+    data.Date = moment().day(-7).format('YYYY-MM-DD')
 
     const responsePDF = [];
     responsePDF.push(data);
