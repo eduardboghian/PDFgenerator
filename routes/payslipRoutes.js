@@ -16,7 +16,6 @@ router.post('/generate-payslip', async (req, res) => {
     data.B = data.B.toFixed(2);
     data.AB = parseFloat(data.Amount) - data.B;
     data.AB = data.AB.toFixed(2);
-    data.Date = data.Date
 
     const responsePDF = [];
     responsePDF.push(data);
