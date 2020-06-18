@@ -9,9 +9,9 @@ router.post('/generate-payslip', async (req, res) => {
     const data = req.body;
     console.log('loaded data...', data);
 
+    data.Amount = parseFloat(data.Amount).toFixed(2);
 
     data.B = parseFloat(data.Amount) * 0.2;
-    data.Amount = data.Amount.toFixed(2);
 
     data.B = data.B.toFixed(2);
     data.AB = parseFloat(data.Amount) - data.B;
