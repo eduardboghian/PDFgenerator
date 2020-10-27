@@ -111,7 +111,7 @@ class ExcelReader extends Component {
   
                   let link = document.createElement('a');
                   link.innerHTML = `${res.data[0].Name}`;
-                  link.download = `Payslip-week-ending-${res.data[0].Date}-${res.data[0].Name}.pdf`;
+                  link.download = `Payslip-week-ending-${res.data[0].Date}- ${res.data[0].Name}.pdf`;
                   link.href = 'data:application/octet-stream;base64,' + b64;
                   document.body.appendChild(link);
                   link.click()
